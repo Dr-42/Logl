@@ -1,4 +1,4 @@
-CC=gcc
+CC=g++
 CFLAGS=-Wall -O2 -g
 
 LIBS=-lm -lglfw -lGL -lX11 -lGLEW
