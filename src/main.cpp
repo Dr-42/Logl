@@ -2,6 +2,10 @@
 #include <GLFW/glfw3.h>
 
 #include <stdio.h>
+
+void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+void processInput(GLFWwindow *window);
+
 int main(){
 	if(!glfwInit()){
 		fprintf(stderr, "Failed to initialize GLFW\n");
@@ -16,7 +20,7 @@ int main(){
 	glfwMakeContextCurrent(window);
 
 	glewExperimental = GL_TRUE;
-	if(!glewInit()){
+	if(glewInit() != GLEW_OK){
 		fprintf(stderr, "Failed to initialize GLEW\n");
 		return -1;
 	}
@@ -31,4 +35,12 @@ int main(){
 	return 0;
 }
 
+void framebuffer_size_callback(GLFWwindow* window, int width, int height){
+	glViewport(0, 0, width, height);
+}
 
+void processInput(GLFWwindow *window){
+	if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS){
+		glfwSetWindowShouldClose(window, true);
+	}
+}
